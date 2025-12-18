@@ -1,0 +1,104 @@
+*{box-sizing:border-box;font-family:Poppins}
+body{
+  margin:0;height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at top,#0f2027,#000);
+  overflow:hidden;color:#e9faff
+}
+
+.bg{
+  position:absolute;inset:-60%;
+  background:conic-gradient(from 0deg,#00e5ff,#0066ff,#7c4dff,#ff4081,#00e5ff);
+  animation:bgSpin 25s linear infinite;
+  filter:blur(140px);opacity:.35
+}
+@keyframes bgSpin{to{transform:rotate(360deg)}}
+
+.stars{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:#fff;opacity:.6;animation:twinkle 3s infinite}
+@keyframes twinkle{50%{opacity:.2;transform:scale(.5)}}
+
+.scene{perspective:2000px;z-index:1}
+.card{
+  width:420px;max-width:92vw;
+  padding:32px;border-radius:26px;position:relative;
+  background:linear-gradient(145deg,#0b1c24,#020a0f);
+  box-shadow:0 0 80px rgba(0,255,255,.55), inset 0 0 0 1px rgba(0,255,255,.35);
+  animation:cardEnter 1.6s cubic-bezier(.16,1,.3,1);
+  transition:transform .12s
+}
+@keyframes cardEnter{
+  0%{transform:scale(.4) rotateX(55deg) rotateY(-35deg);opacity:0}
+  100%{transform:none;opacity:1}
+}
+
+.glow{
+  position:absolute;inset:-8px;border-radius:32px;z-index:-1;
+  background:conic-gradient(#00e5ff,#7c4dff,#ff4081,#00e5ff);
+  filter:blur(45px);opacity:.7;animation:spin 10s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+h2{
+  margin:0 0 22px;font-weight:600;font-size:22px;text-align:center;
+  animation:titleGlow 2.2s ease infinite alternate
+}
+@keyframes titleGlow{from{text-shadow:0 0 12px #00e5ff}to{text-shadow:0 0 32px #ff4081}}
+
+.input{margin-bottom:14px;animation:slideUp .9s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1}}
+
+.input input{
+  width:100%;padding:14px 16px;border-radius:14px;border:none;outline:none;
+  background:#07161d;color:#e9faff;font-size:14px;
+  box-shadow:inset 0 0 0 1px rgba(0,255,255,.3);
+  transition:.35s
+}
+.input input:focus{transform:scale(1.06);box-shadow:0 0 35px rgba(0,255,255,1)}
+
+.btn{
+  width:100%;padding:14px;border-radius:16px;border:none;cursor:pointer;
+  font-weight:700;color:#002;font-size:15px;
+  background:linear-gradient(90deg,#00e5ff,#7c4dff,#ff4081,#00e5ff);
+  background-size:400%;
+  box-shadow:0 0 45px rgba(0,255,255,1);
+  animation:btnFlow 3s linear infinite, btnPulse 1.8s ease infinite
+}
+@keyframes btnFlow{to{background-position:400%}}
+@keyframes btnPulse{50%{transform:scale(1.07)}}
+
+.link{text-align:center;margin-top:16px;font-size:12px;cursor:pointer;opacity:.85}
+.hidden{display:none}
+
+.home{text-align:center;animation:homeIn 1.3s cubic-bezier(.2,1,.2,1)}
+@keyframes homeIn{from{opacity:0;transform:scale(.6)}to{opacity:1}}
+
+.home h1{
+  font-size:30px;margin-bottom:10px;
+  background:linear-gradient(90deg,#00e5ff,#ff4081,#7c4dff);
+  -webkit-background-clip:text;color:transparent;
+  animation:textWave 3s ease infinite
+}
+@keyframes textWave{50%{letter-spacing:4px}}
+
+
+@media (max-width:768px){
+  h2{font-size:clamp(18px,4.5vw,22px)}
+  .home h1{font-size:clamp(22px,6vw,30px)}
+  .bg{filter:blur(90px)}
+  .star{display:none}
+}
+@media (max-width:480px){
+  .card{padding:22px;border-radius:20px}
+  .btn{font-size:14px}
+}
+
+
+.ripple{position:fixed;
+ width:20px;
+height:20px;
+border-radius:50%;
+background:radial-gradient(circle,#00e5ff,transparent 60%);transform:translate(-50%,-50%);animation:rip .9s ease-out;pointer-events:none;z-index:9999}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(18);opacity:0}}
+.cursor-glow{position:fixed;width:10px;height:10px;border-radius:50%;background:#00e5ff;filter:blur(6px);opacity:.6;transform:translate(-50%,-50%);pointer-events:none;animation:fade .3s linear;z-index:9999}
+@keyframes fade{to{opacity:0}}
+.btn.spark{box-shadow:0 0 60px rgba(0,229,255,1), inset 0 0 20px rgba(255,255,255,.35)}
